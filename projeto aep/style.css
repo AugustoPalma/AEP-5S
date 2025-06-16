@@ -1,0 +1,352 @@
+/* Estilos globais para o corpo da página */
+body {
+    font-family: 'Consolas', 'Courier New', monospace; /* Fonte para simular display digital */
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d; /* Fundo muito escuro para contrastar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    color: #0f0; /* Texto em verde neon */
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+/* Container que envolve toda a máquina, incluindo os botões laterais */
+.machine-wrapper {
+    position: relative; /* Para posicionar os botões físicos */
+    width: 90vh; /* Ajusta a largura baseada na altura da viewport para manter proporção */
+    height: 70vh; /* Proporção geral da máquina, incluindo os botões */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222; /* Cor do corpo da máquina */
+    border-radius: 20px;
+    /* Sombras e bordas para dar um efeito de brilho neon e profundidade */
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.7), inset 0 0 15px rgba(0, 255, 0, 0.4);
+    border: 5px solid #0f0;
+}
+
+/* Botões físicos simulados (agora apenas 4) */
+.physical-button {
+    position: absolute;
+    width: 60px; /* Largura do botão */
+    height: 40px; /* Altura do botão */
+    background-color: #006400; /* Verde escuro */
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    opacity: 0.8;
+    z-index: 10; /* Garante que os botões físicos fiquem acima de tudo */
+}
+
+.physical-button:hover {
+    background-color: #008000;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+    opacity: 1;
+}
+
+/* Posicionamento dos 4 botões físicos */
+.physical-button.left-1 { top: 25%; left: 0; transform: translateX(-50%); } /* Superior esquerdo */
+.physical-button.left-4 { top: 65%; left: 0; transform: translateX(-50%); } /* Inferior esquerdo */
+
+.physical-button.right-1 { top: 25%; right: 0; transform: translateX(50%); } /* Superior direito */
+.physical-button.right-4 { top: 65%; right: 0; transform: translateX(50%); } /* Inferior direito */
+
+
+/* Container central que simula a tela da máquina */
+.machine-container {
+    width: 80%; /* Ocupa 80% da largura do wrapper, deixando espaço para os botões */
+    height: 80%; /* Ajuste para a proporção da tela 4:3 dentro do container */
+    display: flex;
+    flex-direction: column; /* Organiza header, main e footer verticalmente */
+    background-color: #000; /* Fundo da tela */
+    border-radius: 10px;
+    overflow: hidden;
+    /* Borda interna da tela com brilho */
+    box-shadow: inset 0 0 10px #0f0;
+    border: 3px solid #0f0;
+}
+
+/* Cabeçalho da máquina */
+header {
+    background-color: #003300; /* Verde escuro para o cabeçalho */
+    color: #ccffcc; /* Verde claro para o texto */
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #0f0; /* Borda inferior com brilho */
+    text-shadow: 0 0 5px #0f0; /* Efeito de brilho no texto */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.tagline {
+    font-size: 0.9em;
+    opacity: 0.8; /* Levemente transparente */
+}
+
+/* Área principal de conteúdo da tela */
+.machine-screen {
+    flex-grow: 1; /* Ocupa o espaço restante verticalmente */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza conteúdo verticalmente */
+    align-items: center; /* Centraliza conteúdo horizontalmente */
+    text-align: center;
+    overflow-y: auto; /* Permite rolagem se o conteúdo for muito grande */
+    position: relative; /* Para posicionar os labels dos botões */
+}
+
+/* Estilos para os labels dos botões na tela */
+.screen-button-labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite clicar através dos labels para o conteúdo da tela */
+    z-index: 5; /* Garante que os labels estejam sobre o conteúdo da tela, mas abaixo dos botões físicos */
+}
+
+.screen-button-labels div {
+    position: absolute;
+    padding: 8px; /* Aumenta o padding para melhor visualização */
+    font-size: 1.1em; /* Aumenta o tamanho da fonte para destacar */
+    font-weight: bold;
+    color: #ccffcc; /* Texto verde claro */
+    text-shadow: 0 0 5px #0f0;
+    opacity: 0; /* Começa invisível por padrão, ativado pela classe .active */
+    transition: opacity 0.2s;
+    background-color: rgba(0, 70, 0, 0.85); /* Fundo mais sólido e opaco */
+    border: 2px solid #0f0; /* Borda mais forte para demarcar */
+    border-radius: 8px; /* Cantos arredondados */
+    pointer-events: none; /* Não interage com o mouse, só o texto visualiza */
+    text-align: center; /* Centraliza o texto do label */
+    line-height: 1.3; /* Ajusta linha para texto em duas linhas */
+    width: 120px; /* Aumenta a largura para acomodar texto maior */
+    min-height: 50px; /* Garante altura mínima para labels */
+    box-sizing: border-box; /* Inclui padding na largura */
+}
+
+.screen-button-labels div.active {
+    opacity: 1; /* Torna visível quando ativo */
+}
+
+/* Posicionamento dos labels na tela, alinhados com os botões físicos (4 botões) */
+.label-left { left: 10px; }
+.label-right { right: 10px; }
+
+.label-1 { top: 25%; transform: translateY(-50%); } /* Superior esquerdo */
+.label-4 { top: 65%; transform: translateY(-50%); } /* Inferior esquerdo */
+
+.label-5 { top: 25%; transform: translateY(-50%); } /* Superior direito */
+.label-8 { top: 65%; transform: translateY(-50%); } /* Inferior direito */
+
+
+/* Estilos para as seções de conteúdo */
+.screen-content {
+    width: 100%;
+    max-width: 400px; /* Limita a largura do conteúdo da seção para melhor leitura */
+    margin: auto; /* Centraliza verticalmente na machine-screen */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen-content h2 {
+    color: #0f0; /* Verde neon */
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    text-shadow: 0 0 5px #0f0; /* Brilho no título */
+}
+
+p.instruction {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+p.small-text {
+    font-size: 0.75em;
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+/* Classe para esconder seções */
+.hidden {
+    display: none;
+}
+
+/* Estilos para o display de ID do usuário */
+.user-id-input-display {
+    background-color: #1a1a1a;
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #0f0;
+    text-shadow: 0 0 10px #0f0;
+    min-width: 200px;
+    margin: 20px 0;
+    height: 1.5em; /* Garante altura fixa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita que o texto vaze */
+    white-space: nowrap; /* Impede quebra de linha */
+}
+
+.user-id-input-display .cursor {
+    animation: blink-caret 0.75s step-end infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink-caret {
+    from, to { border-right-color: transparent }
+    50% { border-right-color: #0f0; }
+}
+
+/* Estilo para o contador de garrafas */
+.counter-display {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0f0;
+    margin: 20px 0;
+    text-shadow: 0 0 5px #0f0;
+}
+
+/* Estilos para mensagens de feedback */
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9em;
+    min-height: 40px; /* Garante que a altura da mensagem não mude drasticamente */
+}
+
+.success {
+    background-color: rgba(0, 128, 0, 0.3); /* Verde translúcido */
+    color: #0f0;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.7); /* Brilho verde */
+}
+
+.error {
+    background-color: rgba(128, 0, 0, 0.3); /* Vermelho translúcido */
+    color: #f00;
+    border: 1px solid #f00;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7); /* Brilho vermelho */
+}
+
+/* Rodapé da máquina */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #003300;
+    color: #ccffcc;
+    font-size: 0.8em;
+    border-top: 2px solid #0f0;
+    text-shadow: 0 0 5px #0f0;
+}
+
+/* Slot de inserção para as embalagens */
+.insertion-slot {
+    width: 80%;
+    max-width: 250px;
+    height: 60px;
+    background-color: #1a1a1a;
+    border: 3px solid #0f0;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0f0;
+    font-size: 0.9em;
+    text-shadow: 0 0 3px #0f0;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.5); /* Sombra interna */
+}
+
+/* Barra de carregamento */
+.loading-bar {
+    width: 80%;
+    max-width: 300px;
+    background-color: #222;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    height: 25px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.loading-bar .progress {
+    width: 0%;
+    height: 100%;
+    background-color: #0f0;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out; /* Transição para o preenchimento */
+}
+
+/* Estilo para a lista de cupons */
+#lista-cupons {
+    width: 80%;
+    max-width: 350px;
+    text-align: left;
+    margin-top: 15px;
+    max-height: 150px; /* Limita a altura e adiciona rolagem se necessário */
+    overflow-y: auto;
+    border: 1px dashed #008000; /* Borda tracejada */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+#lista-cupons p {
+    margin: 5px 0;
+}
+
+/* Estilo para quando não há cupons */
+.no-cupons {
+    opacity: 0.7;
+}
+
+/* NOVO: Estilos para os controles de depuração */
+.debug-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(50, 50, 50, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ffc107;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 200;
+}
+
+.debug-controls button {
+    font-family: Arial, sans-serif;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.debug-controls button:hover {
+    background-color: #ffca2c;
+}

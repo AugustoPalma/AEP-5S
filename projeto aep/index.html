@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina Verde: Reciclar Vale Dinheiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="machine-wrapper">
+        <div class="physical-button left-1" data-index="1"></div>
+        <div class="physical-button left-4" data-index="4"></div>
+
+        <div class="physical-button right-1" data-index="5"></div>
+        <div class="physical-button right-4" data-index="8"></div>
+
+        <div class="machine-container">
+            <header>
+                <h1>Máquina Verde</h1>
+                <p class="tagline">Recicle, Ganhe, Contribua.</p>
+            </header>
+
+            <main class="machine-screen">
+                <div class="screen-button-labels">
+                    <div class="label-left label-1"></div>
+                    <div class="label-left label-4"></div>
+
+                    <div class="label-right label-5"></div>
+                    <div class="label-right label-8"></div>
+                </div>
+
+                <section id="welcome-screen" class="active screen-content">
+                    <h2>Bem-vindo(a) à Máquina Verde!</h2>
+                    <p class="instruction">Pressione qualquer botão para iniciar a operação.</p>
+                </section>
+
+                <section id="main-menu" class="hidden screen-content">
+                    <h2>Menu Principal</h2>
+                    <p class="instruction">Por favor, escolha uma opção ao lado.</p>
+                </section>
+
+                <section id="login-screen" class="hidden screen-content">
+                    <h2>Login</h2>
+                    <p class="instruction">Digite seu ID de usuário com os botões:</p>
+                    <p class="instruction">"1" (Botão Esquerdo Superior)</p>
+                    <p class="instruction">"2" (Botão Esquerdo Inferior)</p>
+                    <p class="instruction">"3" (Botão Direito Superior)</p>
+                    <div class="user-id-input-display">
+                        <span id="user-id-display">_</span><span class="cursor">|</span>
+                    </div>
+                    <p class="instruction small-text">Segure "1", "2" ou "3" para digitar "4", "5" ou "6".</p>
+                    <p class="instruction small-text">Segure "CONFIRMAR / VOLTAR" para retornar ao menu.</p>
+                    <p id="login-message" class="message"></p>
+                </section>
+
+                <section id="recycle-screen" class="hidden screen-content">
+                    <h2>Área de Reciclagem</h2>
+                    <p class="instruction">Insira sua garrafa na abertura.</p>
+                    <div class="insertion-slot"></div>
+                    <p class="counter-display">Garrafas Inseridas: <span id="bottle-count">0</span></p>
+                    <div class="loading-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <p id="recycle-message" class="message"></p>
+                </section>
+
+                <section id="view-coupons-screen" class="hidden screen-content">
+                    <h2>Seus Cupons</h2>
+                    <p class="instruction">Aqui estão seus cupons emitidos.</p>
+                    <div id="lista-cupons">
+                        <p class="no-cupons">Nenhum cupom gerado.</p>
+                    </div>
+                    <p id="cupons-message" class="message"></p>
+                </section>
+
+                <section id="message-screen" class="hidden screen-content">
+                    <h2 id="message-title"></h2>
+                    <p id="message-text"></p>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>MÁQUINA VERDE: Seu futuro é sustentável.</p>
+            </footer>
+        </div>
+    </div>
+    
+<div class="debug-controls">
+        <button id="debug-hold-1">Debug: Segurar "1" (Digita 4)</button>
+        <button id="debug-hold-2">Debug: Segurar "2" (Digita 5)</button>
+        <button id="debug-hold-3">Debug: Segurar "3" (Digita 6)</button>
+        <button id="debug-hold-back">Debug: Segurar "Voltar"</button>
+        <button id="debug-deactivate-coupons">Debug: Desativar Cupons</button>
+    </div>
+
+    <audio id="audio-botaoG" src="audio/botaoG.mp3" preload="auto"></audio>
+    <audio id="audio-aguardeCupom" src="audio/aguardeCupom.mp3" preload="auto"></audio>
+    <audio id="audio-um" src="audio/um.mp3" preload="auto"></audio>
+    <audio id="audio-dois" src="audio/dois.mp3" preload="auto"></audio>
+    <audio id="audio-tres" src="audio/tres.mp3" preload="auto"></audio>
+    <audio id="audio-quatro" src="audio/quatro.mp3" preload="auto"></audio>
+    <audio id="audio-cinco" src="audio/cinco.mp3" preload="auto"></audio>
+    <audio id="audio-seis" src="audio/seis.mp3" preload="auto"></audio>
+    <audio id="audio-garrafaSucesso" src="audio/garrafaSucesso.mp3" preload="auto"></audio>
+    <audio id="audio-insiraGarrafa" src="audio/insiraGarrafa.mp3" preload="auto"></audio>
+    <audio id="audio-loginSucesso" src="audio/loginSucesso.mp3" preload="auto"></audio>
+    <audio id="audio-login" src="audio/login.mp3" preload="auto"></audio>
+    <audio id="audio-fim" src="audio/fim.mp3" preload="auto"></audio>
+    <audio id="audio-comeco" src="audio/comeco.mp3" preload="auto"></audio>
+    <audio id="audio-voltar" src="audio/voltar.mp3" preload="auto"></audio>
+    <audio id="audio-menuPrincipal" src="audio/menuPrincipal.mp3" preload="auto"></audio>
+    <audio id="audio-processing" src="audio/audio-processing.mp3" preload="auto"></audio>
+    <audio id="audio-login-required" src="audio/audio-login-required.mp3" preload="auto"></audio>
+    <audio id="audio-error" src="audio/audio-error.mp3" preload="auto"></audio>
+    <audio id="audio-debug" src="audio/audio-debug.mp3" preload="auto"></audio>
+    <audio id="audio-confirm" src="audio/audio-confirm.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
